@@ -9,8 +9,6 @@
 
 #include <me_BaseTypes.h>
 
-#include <me_MemorySegment.h>
-
 namespace me_Streams
 {
   class IInputStream
