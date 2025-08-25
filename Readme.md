@@ -14,8 +14,8 @@ UART (any communication channel) is good example of stream.
 
 ## Code
 
-* [Example][Example]
 * [Interface][Interface]
+* [Example][Example]
 * [Implementation][Implementation]
 
 
