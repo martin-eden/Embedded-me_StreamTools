@@ -97,6 +97,34 @@ TBool me_Streams::CopyStreamTo(
 }
 
 /*
+  Compare streams
+*/
+TBool me_Streams::StreamsAreEqual(
+  IInputStream * A_Stream,
+  IInputStream * B_Stream
+)
+{
+  TBool A_Stream_Done;
+  TBool B_Stream_Done;
+  TUnit A_Unit;
+  TUnit B_Unit;
+
+  while (true)
+  {
+    A_Stream_Done = !A_Stream->Read(&A_Unit);
+    B_Stream_Done = !B_Stream->Read(&B_Unit);
+
+    if (A_Stream_Done || B_Stream_Done)
+      break;
+
+    if (A_Unit != B_Unit)
+      return false;
+  }
+
+  return (A_Stream_Done && B_Stream_Done);
+}
+
+/*
   2025-08-24
   2025-08-25
   2025-08-26

@@ -61,6 +61,12 @@ namespace me_Streams
     IInputStream * InputStream,
     IOutputStream * OutputStream
   );
+
+  // [Handy] Data equality check
+  TBool StreamsAreEqual(
+    IInputStream * A_Stream,
+    IInputStream * B_Stream
+  );
 }
 
 /*
