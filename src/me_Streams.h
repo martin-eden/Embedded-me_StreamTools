@@ -11,21 +11,28 @@
 
 namespace me_Streams
 {
-  // Input stream concept
+  // [Core] Input stream concept
   class IInputStream
   {
     public:
       virtual TBool Read(TUnit * Unit) = 0;
   };
 
-  // Output stream concept
+  // [Core] Output stream concept
   class IOutputStream
   {
     public:
       virtual TBool Write(TUnit Unit) = 0;
   };
 
-  // Input stream, requires reader
+  // [Handy] Infinite input stream of zeroes
+  class TZeroesInputStream : public IInputStream
+  {
+    public:
+      TBool Read(TUnit * Unit) override;
+  };
+
+  // [Handy] Input stream, requires reader
   class TInputStream : public IInputStream
   {
     public:
@@ -37,7 +44,7 @@ namespace me_Streams
       TFixedOperation ReadUnit;
   };
 
-  // Output stream, requires writer
+  // [Handy] Output stream, requires writer
   class TOutputStream : public IOutputStream
   {
     public:
@@ -49,7 +56,7 @@ namespace me_Streams
       TFixedOperation WriteUnit;
   };
 
-  // Copy stream
+  // [Handy] Copy stream
   TBool CopyStreamTo(
     IInputStream * InputStream,
     IOutputStream * OutputStream

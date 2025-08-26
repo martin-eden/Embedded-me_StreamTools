@@ -11,6 +11,20 @@
 
 using namespace me_Streams;
 
+/*
+  Zeroes input stream
+
+  Used by [me_MemorySegment] to fill unused memory.
+*/
+TBool TZeroesInputStream::Read(
+  TUnit * Unit
+)
+{
+  *Unit = (TUnit) 0;
+
+  return true;
+}
+
 // ( Input stream
 
 /*
