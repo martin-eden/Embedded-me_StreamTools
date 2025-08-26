@@ -2,7 +2,7 @@
 
 (2025-08)
 
-Streams interface. Experimental library.
+Streams interface.
 
 Unlike some other authors, I'll try to minimize conceptual scope.
 

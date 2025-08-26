@@ -2,7 +2,7 @@
 
 /*
   Author: Martin Eden
-  Last mod.: 2025-08-24
+  Last mod.: 2025-08-26
 */
 
 #include <me_Streams.h>
@@ -11,8 +11,13 @@
 
 using namespace me_Streams;
 
-//
+// ( Input stream
 
+/*
+  Setup input stream
+
+  Requires reader function.
+*/
 void TInputStream::Init(
   TFixedOperation UnitReader
 )
@@ -20,6 +25,9 @@ void TInputStream::Init(
   this->ReadUnit = UnitReader;
 }
 
+/*
+  Read unit
+*/
 TBool TInputStream::Read(
   TUnit * Unit
 )
@@ -27,8 +35,15 @@ TBool TInputStream::Read(
   return this->ReadUnit((TAddress) Unit);
 }
 
-//
+// )
 
+// ( Output stream
+
+/*
+  Setup output stream
+
+  Requires write function.
+*/
 void TOutputStream::Init(
   TFixedOperation UnitWriter
 )
@@ -36,6 +51,9 @@ void TOutputStream::Init(
   this->WriteUnit = UnitWriter;
 }
 
+/*
+  Write unit
+*/
 TBool TOutputStream::Write(
   TUnit Unit
 )
@@ -43,8 +61,29 @@ TBool TOutputStream::Write(
   return this->WriteUnit((TAddress) &Unit);
 }
 
-//
+// )
+
+/*
+  Copy stream
+*/
+TBool me_Streams::CopyStreamTo(
+  IInputStream * InputStream,
+  IOutputStream * OutputStream
+)
+{
+  TUnit Unit;
+
+  while (InputStream->Read(&Unit))
+  {
+    if (!OutputStream->Write(Unit))
+      return false;
+  }
+
+  return true;
+}
 
 /*
   2025-08-24
+  2025-08-25
+  2025-08-26
 */

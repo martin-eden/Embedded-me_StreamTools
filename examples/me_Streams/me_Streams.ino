@@ -26,20 +26,25 @@ TBool Op_WaitByte(
 */
 void EchoTest_Inf()
 {
+  /*
+    Here we're initializing input stream with "wait byte from UART"
+    operation. Then we're setting output stream to "output to UART".
+    And then we're copying input stream to output stream.
+  */
+
   me_Streams::TInputStream InputStream;
-  me_Streams::TOutputStream OutputStream;
+  me_Uart::TOutputStream OutputStream;
 
   InputStream.Init(Op_WaitByte);
-  OutputStream.Init(me_Uart::Op_PutByte);
 
-  me_Streams::Freetown::CopyTo(&OutputStream, &InputStream);
+  me_Streams::CopyStreamTo(&InputStream, &OutputStream);
 }
 
 void setup()
 {
   Console.Init();
 
-  Console.Print("[me_Streams] infinite test. Echo");
+  Console.Print("[me_Streams] Infinite echo test");
   EchoTest_Inf();
   Console.Print("Done (lol)");
 }

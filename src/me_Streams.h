@@ -2,7 +2,7 @@
 
 /*
   Author: Martin Eden
-  Last mod.: 2025-08-25
+  Last mod.: 2025-08-26
 */
 
 #pragma once
@@ -11,44 +11,53 @@
 
 namespace me_Streams
 {
+  // Input stream concept
   class IInputStream
   {
     public:
-      virtual TBool Read(TUnit * Unit);
+      virtual TBool Read(TUnit * Unit) = 0;
   };
 
+  // Output stream concept
+  class IOutputStream
+  {
+    public:
+      virtual TBool Write(TUnit Unit) = 0;
+  };
+
+  // Input stream, requires reader
   class TInputStream : public IInputStream
   {
     public:
       void Init(TFixedOperation UnitReader);
 
-      virtual TBool Read(TUnit * Unit);
+      TBool Read(TUnit * Unit) override;
 
     protected:
       TFixedOperation ReadUnit;
   };
 
-  class TOutputStream
+  // Output stream, requires writer
+  class TOutputStream : public IOutputStream
   {
     public:
       void Init(TFixedOperation UnitWriter);
 
-      virtual TBool Write(TUnit Unit);
+      TBool Write(TUnit Unit) override;
 
     protected:
       TFixedOperation WriteUnit;
   };
 
-  namespace Freetown
-  {
-    TBool CopyTo(
-      TOutputStream * OutputStream,
-      TInputStream * InputStream
-    );
-  }
+  // Copy stream
+  TBool CopyStreamTo(
+    IInputStream * InputStream,
+    IOutputStream * OutputStream
+  );
 }
 
 /*
   2025-08-24
   2025-08-25
+  2025-08-26
 */
