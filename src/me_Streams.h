@@ -1,30 +1,17 @@
-// Streams interface
+// Flesh for streams interface
 
 /*
   Author: Martin Eden
-  Last mod.: 2025-08-26
+  Last mod.: 2025-08-27
 */
 
 #pragma once
 
 #include <me_BaseTypes.h>
+#include <me_BaseInterfaces.h>
 
 namespace me_Streams
 {
-  // [Core] Input stream concept
-  class IInputStream
-  {
-    public:
-      virtual TBool Read(TUnit * Unit) = 0;
-  };
-
-  // [Core] Output stream concept
-  class IOutputStream
-  {
-    public:
-      virtual TBool Write(TUnit Unit) = 0;
-  };
-
   // [Handy] Infinite input stream of zeroes
   class TZeroesInputStream : public IInputStream
   {

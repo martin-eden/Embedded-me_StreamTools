@@ -2,12 +2,13 @@
 
 /*
   Author: Martin Eden
-  Last mod.: 2025-08-26
+  Last mod.: 2025-08-27
 */
 
 #include <me_Streams.h>
 
 #include <me_BaseTypes.h>
+#include <me_BaseInterfaces.h>
 
 using namespace me_Streams;
 
