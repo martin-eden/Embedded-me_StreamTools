@@ -2,7 +2,7 @@
 
 /*
   Author: Martin Eden
-  Last mod.: 2025-08-27
+  Last mod.: 2025-08-28
 */
 
 #include <me_StreamTools.h>
@@ -25,14 +25,14 @@ TBool TZeroesInputStream::Read(
 }
 
 // ( [Adapter] Input stream from reader
-void TInputStream::Init(
+void TReaderInputStream::Init(
   TFixedOperation UnitReader
 )
 {
   this->ReadUnit = UnitReader;
 }
 
-TBool TInputStream::Read(
+TBool TReaderInputStream::Read(
   TUnit * Unit
 )
 {
@@ -41,14 +41,14 @@ TBool TInputStream::Read(
 // )
 
 // ( [Adapter] Output stream from writer
-void TOutputStream::Init(
+void TWriterOutputStream::Init(
   TFixedOperation UnitWriter
 )
 {
   this->WriteUnit = UnitWriter;
 }
 
-TBool TOutputStream::Write(
+TBool TWriterOutputStream::Write(
   TUnit Unit
 )
 {

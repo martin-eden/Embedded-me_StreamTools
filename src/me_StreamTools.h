@@ -20,7 +20,7 @@ namespace me_StreamTools
   };
 
   // [Adapter] Input stream == Reader
-  class TInputStream : public IInputStream
+  class TReaderInputStream : public IInputStream
   {
     public:
       void Init(TFixedOperation UnitReader);
@@ -32,7 +32,7 @@ namespace me_StreamTools
   };
 
   // [Adapter] Output stream == Writer
-  class TOutputStream : public IOutputStream
+  class TWriterOutputStream : public IOutputStream
   {
     public:
       void Init(TFixedOperation UnitWriter);

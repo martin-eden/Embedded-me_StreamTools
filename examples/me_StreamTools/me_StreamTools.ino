@@ -32,7 +32,7 @@ void EchoTest_Inf()
     And then we're copying input stream to output stream.
   */
 
-  me_StreamTools::TInputStream InputStream;
+  me_StreamTools::TReaderInputStream InputStream;
   me_Uart::TOutputStream OutputStream;
 
   InputStream.Init(Op_WaitByte);
