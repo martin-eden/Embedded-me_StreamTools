@@ -2,10 +2,10 @@
 
 /*
   Author: Martin Eden
-  Last mod.: 2025-08-25
+  Last mod.: 2025-08-28
 */
 
-#include <me_Streams.h>
+#include <me_StreamTools.h>
 
 #include <me_BaseTypes.h>
 #include <me_Console.h>
@@ -32,12 +32,12 @@ void EchoTest_Inf()
     And then we're copying input stream to output stream.
   */
 
-  me_Streams::TInputStream InputStream;
+  me_StreamTools::TInputStream InputStream;
   me_Uart::TOutputStream OutputStream;
 
   InputStream.Init(Op_WaitByte);
 
-  me_Streams::CopyStreamTo(&InputStream, &OutputStream);
+  me_StreamTools::CopyStreamTo(&InputStream, &OutputStream);
 }
 
 void setup()

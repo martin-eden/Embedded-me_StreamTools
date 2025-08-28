@@ -10,7 +10,7 @@
 #include <me_BaseTypes.h>
 #include <me_BaseInterfaces.h>
 
-namespace me_Streams
+namespace me_StreamTools
 {
   // [Emitter] .Read() --> 0
   class TZeroesInputStream : public IInputStream
@@ -60,4 +60,5 @@ namespace me_Streams
   2025-08-24
   2025-08-25
   2025-08-26
+  2025-08-28
 */

@@ -5,12 +5,12 @@
   Last mod.: 2025-08-27
 */
 
-#include <me_Streams.h>
+#include <me_StreamTools.h>
 
 #include <me_BaseTypes.h>
 #include <me_BaseInterfaces.h>
 
-using namespace me_Streams;
+using namespace me_StreamTools;
 
 /*
   [Emitter] Zeroes emitter
@@ -59,7 +59,7 @@ TBool TOutputStream::Write(
 /*
   [Copy] Copy stream
 */
-TBool me_Streams::CopyStreamTo(
+TBool me_StreamTools::CopyStreamTo(
   IInputStream * InputStream,
   IOutputStream * OutputStream
 )
@@ -78,7 +78,7 @@ TBool me_Streams::CopyStreamTo(
 /*
   [Compare] Compare streams
 */
-TBool me_Streams::StreamsAreEqual(
+TBool me_StreamTools::StreamsAreEqual(
   IInputStream * A_Stream,
   IInputStream * B_Stream
 )
