@@ -12,14 +12,14 @@
 
 namespace me_Streams
 {
-  // [Emitter] Input stream of zeroes
+  // [Emitter] .Read() --> 0
   class TZeroesInputStream : public IInputStream
   {
     public:
       TBool Read(TUnit * Unit) override;
   };
 
-  // [Adapter] Input stream from reader
+  // [Adapter] Input stream == Reader
   class TInputStream : public IInputStream
   {
     public:
@@ -31,7 +31,7 @@ namespace me_Streams
       TFixedOperation ReadUnit;
   };
 
-  // [Adapter] Output stream from writer
+  // [Adapter] Output stream == Writer
   class TOutputStream : public IOutputStream
   {
     public:
@@ -43,13 +43,13 @@ namespace me_Streams
       TFixedOperation WriteUnit;
   };
 
-  // [Copy] Copy stream
+  // [Copy] Input --> Output
   TBool CopyStreamTo(
     IInputStream * InputStream,
     IOutputStream * OutputStream
   );
 
-  // [Compare] Data equality check
+  // [Compare] A == B ?
   TBool StreamsAreEqual(
     IInputStream * A_Stream,
     IInputStream * B_Stream
