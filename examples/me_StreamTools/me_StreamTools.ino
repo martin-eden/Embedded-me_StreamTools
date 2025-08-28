@@ -1,4 +1,4 @@
-// [me_Streams] echo test
+// [me_StreamTools] test
 
 /*
   Author: Martin Eden
@@ -10,6 +10,29 @@
 #include <me_BaseTypes.h>
 #include <me_Console.h>
 #include <me_Uart.h>
+#include <me_MemorySegment.h>
+#include <me_WorkMemory.h>
+
+/*
+  Copy data from memory to output stream
+*/
+void MemToStreamTest()
+{
+  TAddressSegment TestDataSeg =
+    me_MemorySegment::Freetown::FromAsciiz("TEST DATA\n");
+
+  me_StreamTools::TAddrsegInputStream Input_MemStream;
+  me_StreamTools::TWriterOutputStream Output_UartStream;
+
+  Console.Print("( Memory -> UART stream test");
+
+  Input_MemStream.Init(TestDataSeg, me_WorkMemory::Op_GetByte);
+  Output_UartStream.Init(me_Uart::Op_PutByte);
+
+  me_StreamTools::CopyStreamTo(&Input_MemStream, &Output_UartStream);
+
+  Console.Print(")");
+}
 
 // TFixedOperation wrapper for me_Uart::WaitByte
 TBool Op_WaitByte(
@@ -35,18 +58,23 @@ void EchoTest_Inf()
   me_StreamTools::TReaderInputStream InputStream;
   me_Uart::TOutputStream OutputStream;
 
+  Console.Print("( UART -> UART stream test. Infinite");
+
   InputStream.Init(Op_WaitByte);
 
   me_StreamTools::CopyStreamTo(&InputStream, &OutputStream);
+
+  Console.Print(")");
 }
 
 void setup()
 {
   Console.Init();
 
-  Console.Print("[me_Streams] Infinite echo test");
+  Console.Print("[me_StreamTools] Tests");
+  MemToStreamTest();
   EchoTest_Inf();
-  Console.Print("Done (lol)");
+  Console.Print("Done");
 }
 
 void loop()
@@ -55,4 +83,6 @@ void loop()
 
 /*
   2025-08-24
+  2025-08-25
+  2025-08-28
 */

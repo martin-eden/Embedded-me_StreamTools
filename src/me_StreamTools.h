@@ -43,6 +43,38 @@ namespace me_StreamTools
       TFixedOperation WriteUnit;
   };
 
+  // [Adapter] Input stream = Address segment + Reader
+  class TAddrsegInputStream : public IInputStream
+  {
+    public:
+      TBool Init(
+        TAddressSegment AddrSeg,
+        TOperation UnitReader
+      );
+
+      TBool Read(TUnit * Unit) override;
+
+    private:
+      TAddressIterator Rator;
+      TOperation ReadUnit;
+  };
+
+  // [Adapter] Output stream = Address segment + Writer
+  class TAddrsegOutputStream : public IOutputStream
+  {
+    public:
+      TBool Init(
+        TAddressSegment AddrSeg,
+        TOperation UnitWriter
+      );
+
+      TBool Write(TUnit Unit) override;
+
+    private:
+      TAddressIterator Rator;
+      TOperation WriteUnit;
+  };
+
   // [Copy] Input --> Output
   TBool CopyStreamTo(
     IInputStream * InputStream,

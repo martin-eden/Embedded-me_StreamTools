@@ -2,7 +2,7 @@
 
 (2025-08)
 
-Streams interface.
+Tools and adapters for streams.
 
 Unlike some other authors, I'll try to minimize conceptual scope.
 
@@ -30,9 +30,9 @@ Easy way is to clone [GetLibs][GetLibs] repo and run it's code.
 * [My other repositories][Repos]
 
 
-[Interface]: src/me_Streams.h
-[Example]: examples/me_Streams/me_Streams.ino
-[Implementation]: src/me_Streams.cpp
+[Interface]: src/me_StreamTools.h
+[Example]: examples/me_StreamTools/me_StreamTools.ino
+[Implementation]: src/me_StreamTools.cpp
 
 [GetLibs]: https://github.com/martin-eden/Embedded-Framework-GetLibs
 
