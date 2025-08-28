@@ -2,7 +2,7 @@
 
 /*
   Author: Martin Eden
-  Last mod.: 2025-08-27
+  Last mod.: 2025-08-28
 */
 
 #pragma once
@@ -12,14 +12,14 @@
 
 namespace me_Streams
 {
-  // [Handy] Infinite input stream of zeroes
+  // [Emitter] Input stream of zeroes
   class TZeroesInputStream : public IInputStream
   {
     public:
       TBool Read(TUnit * Unit) override;
   };
 
-  // [Handy] Input stream, requires reader
+  // [Adapter] Input stream from reader
   class TInputStream : public IInputStream
   {
     public:
@@ -31,7 +31,7 @@ namespace me_Streams
       TFixedOperation ReadUnit;
   };
 
-  // [Handy] Output stream, requires writer
+  // [Adapter] Output stream from writer
   class TOutputStream : public IOutputStream
   {
     public:
@@ -43,13 +43,13 @@ namespace me_Streams
       TFixedOperation WriteUnit;
   };
 
-  // [Handy] Copy stream
+  // [Copy] Copy stream
   TBool CopyStreamTo(
     IInputStream * InputStream,
     IOutputStream * OutputStream
   );
 
-  // [Handy] Data equality check
+  // [Compare] Data equality check
   TBool StreamsAreEqual(
     IInputStream * A_Stream,
     IInputStream * B_Stream

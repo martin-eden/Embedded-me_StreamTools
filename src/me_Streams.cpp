@@ -13,9 +13,7 @@
 using namespace me_Streams;
 
 /*
-  Zeroes input stream
-
-  Used by [me_MemorySegment] to fill unused memory.
+  [Emitter] Zeroes emitter
 */
 TBool TZeroesInputStream::Read(
   TUnit * Unit
@@ -26,13 +24,7 @@ TBool TZeroesInputStream::Read(
   return true;
 }
 
-// ( Input stream
-
-/*
-  Setup input stream
-
-  Requires reader function.
-*/
+// ( [Adapter] Input stream from reader
 void TInputStream::Init(
   TFixedOperation UnitReader
 )
@@ -40,25 +32,15 @@ void TInputStream::Init(
   this->ReadUnit = UnitReader;
 }
 
-/*
-  Read unit
-*/
 TBool TInputStream::Read(
   TUnit * Unit
 )
 {
   return this->ReadUnit((TAddress) Unit);
 }
-
 // )
 
-// ( Output stream
-
-/*
-  Setup output stream
-
-  Requires write function.
-*/
+// ( [Adapter] Output stream from writer
 void TOutputStream::Init(
   TFixedOperation UnitWriter
 )
@@ -66,20 +48,16 @@ void TOutputStream::Init(
   this->WriteUnit = UnitWriter;
 }
 
-/*
-  Write unit
-*/
 TBool TOutputStream::Write(
   TUnit Unit
 )
 {
   return this->WriteUnit((TAddress) &Unit);
 }
-
 // )
 
 /*
-  Copy stream
+  [Copy] Copy stream
 */
 TBool me_Streams::CopyStreamTo(
   IInputStream * InputStream,
@@ -98,7 +76,7 @@ TBool me_Streams::CopyStreamTo(
 }
 
 /*
-  Compare streams
+  [Compare] Compare streams
 */
 TBool me_Streams::StreamsAreEqual(
   IInputStream * A_Stream,
