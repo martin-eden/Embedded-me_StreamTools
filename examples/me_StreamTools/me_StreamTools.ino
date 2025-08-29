@@ -12,7 +12,7 @@
 
 #include <me_Uart.h>
 #include <me_WorkMemory.h>
-#include <me_MemorySegment.h>
+#include <me_WorkmemTools.h>
 
 // TFixedOperation for sending byte
 TBool Op_SendByte(
@@ -43,7 +43,7 @@ TBool Op_MemGetByteAt(
 void MemToStreamTest()
 {
   TAddressSegment TestDataSeg =
-    me_MemorySegment::FromAsciiz("TEST DATA\n");
+    me_WorkmemTools::FromAsciiz("TEST DATA\n");
 
   me_StreamTools::TAddrsegInputStream Input_MemStream;
   me_StreamTools::TWriterOutputStream Output_UartStream;
