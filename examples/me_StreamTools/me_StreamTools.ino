@@ -10,22 +10,31 @@
 #include <me_BaseTypes.h>
 #include <me_Console.h>
 
-#include <me_MemorySegment.h>
-#include <me_WorkMemory.h>
 #include <me_Uart.h>
+#include <me_WorkMemory.h>
+#include <me_MemorySegment.h>
 
 // TFixedOperation for sending byte
 TBool Op_SendByte(
-  TAddress Data
+  TAddress DataAddr
 )
 {
   TUint_1 ByteValue;
 
-  ByteValue = *(TUint_1 *) Data;
+  ByteValue = *(TUint_1 *) DataAddr;
 
   me_Uart::SendByte(ByteValue);
 
   return true;
+}
+
+// TOperation for getting byte from RAM
+TBool Op_MemGetByteAt(
+  TAddress DataAddr,
+  TAddress Address
+)
+{
+  return me_WorkMemory::GetByteFrom((TUint_1 *) DataAddr, Address);
 }
 
 /*
@@ -41,7 +50,7 @@ void MemToStreamTest()
 
   Console.Print("( Memory -> UART stream test");
 
-  Input_MemStream.Init(TestDataSeg, me_WorkMemory::Op_GetByte);
+  Input_MemStream.Init(TestDataSeg, Op_MemGetByteAt);
   Output_UartStream.Init(Op_SendByte);
 
   me_StreamTools::CopyStreamTo(&Input_MemStream, &Output_UartStream);
