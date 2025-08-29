@@ -2,16 +2,31 @@
 
 /*
   Author: Martin Eden
-  Last mod.: 2025-08-28
+  Last mod.: 2025-08-29
 */
 
 #include <me_StreamTools.h>
 
 #include <me_BaseTypes.h>
 #include <me_Console.h>
-#include <me_Uart.h>
+
 #include <me_MemorySegment.h>
 #include <me_WorkMemory.h>
+#include <me_Uart.h>
+
+// TFixedOperation for sending byte
+TBool Op_SendByte(
+  TAddress Data
+)
+{
+  TUint_1 ByteValue;
+
+  ByteValue = *(TUint_1 *) Data;
+
+  me_Uart::SendByte(ByteValue);
+
+  return true;
+}
 
 /*
   Copy data from memory to output stream
@@ -19,7 +34,7 @@
 void MemToStreamTest()
 {
   TAddressSegment TestDataSeg =
-    me_MemorySegment::Freetown::FromAsciiz("TEST DATA\n");
+    me_MemorySegment::FromAsciiz("TEST DATA\n");
 
   me_StreamTools::TAddrsegInputStream Input_MemStream;
   me_StreamTools::TWriterOutputStream Output_UartStream;
@@ -27,7 +42,7 @@ void MemToStreamTest()
   Console.Print("( Memory -> UART stream test");
 
   Input_MemStream.Init(TestDataSeg, me_WorkMemory::Op_GetByte);
-  Output_UartStream.Init(me_Uart::Op_PutByte);
+  Output_UartStream.Init(Op_SendByte);
 
   me_StreamTools::CopyStreamTo(&Input_MemStream, &Output_UartStream);
 
@@ -56,11 +71,12 @@ void EchoTest_Inf()
   */
 
   me_StreamTools::TReaderInputStream InputStream;
-  me_Uart::TOutputStream OutputStream;
+  me_StreamTools::TWriterOutputStream OutputStream;
 
   Console.Print("( UART -> UART stream test. Infinite");
 
   InputStream.Init(Op_WaitByte);
+  OutputStream.Init(Op_SendByte);
 
   me_StreamTools::CopyStreamTo(&InputStream, &OutputStream);
 
