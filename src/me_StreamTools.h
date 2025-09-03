@@ -2,7 +2,7 @@
 
 /*
   Author: Martin Eden
-  Last mod.: 2025-08-28
+  Last mod.: 2025-09-03
 */
 
 #pragma once
@@ -55,7 +55,7 @@ namespace me_StreamTools
       TBool Read(TUnit * Unit) override;
 
     private:
-      TAddressIterator Rator;
+      TAddrsegIterator Rator;
       TOperation ReadUnit;
   };
 
@@ -71,7 +71,7 @@ namespace me_StreamTools
       TBool Write(TUnit Unit) override;
 
     private:
-      TAddressIterator Rator;
+      TAddrsegIterator Rator;
       TOperation WriteUnit;
   };
 
