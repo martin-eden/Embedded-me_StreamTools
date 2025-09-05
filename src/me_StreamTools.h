@@ -27,7 +27,7 @@ namespace me_StreamTools
 
       TBool Read(TUnit * Unit) override;
 
-    protected:
+    private:
       TFixedOperation ReadUnit;
   };
 
@@ -39,7 +39,7 @@ namespace me_StreamTools
 
       TBool Write(TUnit Unit) override;
 
-    protected:
+    private:
       TFixedOperation WriteUnit;
   };
 
@@ -93,8 +93,6 @@ namespace me_StreamTools
 }
 
 /*
-  2025-08-24
-  2025-08-25
-  2025-08-26
-  2025-08-28
+  2025 # # # #
+  2025-09-05
 */
