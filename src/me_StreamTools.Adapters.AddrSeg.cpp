@@ -2,7 +2,7 @@
 
 /*
   Author: Martin Eden
-  Last mod.: 2025-08-28
+  Last mod.: 2025-09-05
 */
 
 #include <me_StreamTools.h>
@@ -11,38 +11,37 @@
 
 using namespace me_StreamTools;
 
-// ( [Adapter] Input stream == Address segment + Reader
+// ( [Adapter] Input stream == Address segment + Getter
 
 /*
   Setup
 */
 TBool TAddrsegInputStream::Init(
   TAddressSegment AddrSeg,
-  TOperation UnitReader
+  TOperation UnitGetter
 )
 {
   if (!Rator.Init(AddrSeg))
     return false;
 
-  this->ReadUnit = UnitReader;
+  this->GetUnit = UnitGetter;
 
   return true;
 }
 
 /*
-  Read byte wrapper
+  Read
 */
 TBool TAddrsegInputStream::Read(
   TUnit * Unit
 )
 {
-  TAddress ReadAddr;
-  TAddress UnitAddr = (TAddress) Unit;
+  TAddress Addr;
 
-  if (!Rator.GetNextAddr(&ReadAddr))
+  if (!Rator.GetNextAddr(&Addr))
     return false;
 
-  if (!ReadUnit(UnitAddr, ReadAddr))
+  if (!GetUnit((TAddress) Unit, Addr))
     return false;
 
   return true;
@@ -50,38 +49,37 @@ TBool TAddrsegInputStream::Read(
 
 // )
 
-// ( [Adapter] Output stream == Address segment + Writer
+// ( [Adapter] Output stream == Address segment + Setter
 
 /*
   Setup
 */
 TBool TAddrsegOutputStream::Init(
   TAddressSegment AddrSeg,
-  TOperation UnitWriter
+  TOperation UnitSetter
 )
 {
   if (!Rator.Init(AddrSeg))
     return false;
 
-  this->WriteUnit = UnitWriter;
+  this->SetUnit = UnitSetter;
 
   return true;
 }
 
 /*
-  Write byte wrapper
+  Write
 */
 TBool TAddrsegOutputStream::Write(
   TUnit Unit
 )
 {
-  TAddress WriteAddr;
-  TAddress UnitAddr = (TAddress) &Unit;
+  TAddress Addr;
 
-  if (!Rator.GetNextAddr(&WriteAddr))
+  if (!Rator.GetNextAddr(&Addr))
     return false;
 
-  if (!WriteUnit(UnitAddr, WriteAddr))
+  if (!SetUnit((TAddress) &Unit, Addr))
     return false;
 
   return true;

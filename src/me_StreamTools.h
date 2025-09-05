@@ -2,7 +2,7 @@
 
 /*
   Author: Martin Eden
-  Last mod.: 2025-09-03
+  Last mod.: 2025-09-05
 */
 
 #pragma once
@@ -43,36 +43,36 @@ namespace me_StreamTools
       TFixedOperation WriteUnit;
   };
 
-  // [Adapter] Input stream = Address segment + Reader
+  // [Adapter] Input stream = Address segment + Getter
   class TAddrsegInputStream : public IInputStream
   {
     public:
       TBool Init(
         TAddressSegment AddrSeg,
-        TOperation UnitReader
+        TOperation UnitGetter
       );
 
       TBool Read(TUnit * Unit) override;
 
     private:
       TAddrsegIterator Rator;
-      TOperation ReadUnit;
+      TOperation GetUnit;
   };
 
-  // [Adapter] Output stream = Address segment + Writer
+  // [Adapter] Output stream = Address segment + Setter
   class TAddrsegOutputStream : public IOutputStream
   {
     public:
       TBool Init(
         TAddressSegment AddrSeg,
-        TOperation UnitWriter
+        TOperation UnitSetter
       );
 
       TBool Write(TUnit Unit) override;
 
     private:
       TAddrsegIterator Rator;
-      TOperation WriteUnit;
+      TOperation SetUnit;
   };
 
   // [Copy] Input --> Output
