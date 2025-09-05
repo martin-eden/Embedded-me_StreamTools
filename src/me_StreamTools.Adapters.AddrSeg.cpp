@@ -85,6 +85,22 @@ TBool TAddrsegOutputStream::Write(
   return true;
 }
 
+/*
+  Get write address
+*/
+TAddress TAddrsegOutputStream::GetWriteAddr()
+{
+  return Rator.GetAddr();
+}
+
+/*
+  Check that iteration is complete
+*/
+TBool TAddrsegOutputStream::IsFull()
+{
+  return Rator.IsDone();
+}
+
 // )
 
 /*

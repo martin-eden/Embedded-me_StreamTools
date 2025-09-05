@@ -70,6 +70,10 @@ namespace me_StreamTools
 
       TBool Write(TUnit Unit) override;
 
+      TAddress GetWriteAddr();
+
+      TBool IsFull();
+
     private:
       TAddrsegIterator Rator;
       TOperation SetUnit;
