@@ -32,7 +32,7 @@ Easy way is to clone [GetLibs][GetLibs] repo and run it's code.
 
 [Interface]: src/me_StreamTools.h
 [Example]: examples/me_StreamTools/me_StreamTools.ino
-[Implementation]: src/me_StreamTools.cpp
+[Implementation]: src/
 
 [GetLibs]: https://github.com/martin-eden/Embedded-Framework-GetLibs
 
