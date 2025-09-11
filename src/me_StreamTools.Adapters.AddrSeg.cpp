@@ -1,4 +1,4 @@
-// Address segments as streams implementation
+// Address segment as stream implementation
 
 /*
   Author: Martin Eden
