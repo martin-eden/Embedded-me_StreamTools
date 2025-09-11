@@ -2,7 +2,7 @@
 
 /*
   Author: Martin Eden
-  Last mod.: 2025-09-05
+  Last mod.: 2025-09-11
 */
 
 #include <me_StreamTools.h>
@@ -67,7 +67,7 @@ TBool TAddrsegInputStream::Read(
 {
   TAddress Addr;
 
-  if (!Rator.GetNextAddr(&Addr))
+  if (!TAddrsegStream::Rator.GetNextAddr(&Addr))
     return false;
 
   if (!GetUnit((TAddress) Unit, Addr))
