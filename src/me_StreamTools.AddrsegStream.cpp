@@ -41,10 +41,6 @@ TAddressSegment TAddrsegStream::GetProcessedSegment()
 // )
 
 // ( [Adapter] Input stream == Address segment + Getter
-
-/*
-  Setup
-*/
 TBool TAddrsegInputStream::Init(
   TAddressSegment AddrSeg,
   TOperation UnitGetter
@@ -58,9 +54,6 @@ TBool TAddrsegInputStream::Init(
   return true;
 }
 
-/*
-  Read
-*/
 TBool TAddrsegInputStream::Read(
   TUnit * Unit
 )
@@ -75,14 +68,9 @@ TBool TAddrsegInputStream::Read(
 
   return true;
 }
-
 // )
 
 // ( [Adapter] Output stream == Address segment + Setter
-
-/*
-  Setup
-*/
 TBool TAddrsegOutputStream::Init(
   TAddressSegment AddrSeg,
   TOperation UnitSetter
@@ -96,9 +84,6 @@ TBool TAddrsegOutputStream::Init(
   return true;
 }
 
-/*
-  Write
-*/
 TBool TAddrsegOutputStream::Write(
   TUnit Unit
 )
@@ -113,7 +98,6 @@ TBool TAddrsegOutputStream::Write(
 
   return true;
 }
-
 // )
 
 /*
