@@ -81,6 +81,10 @@ TBool me_StreamTools::CopyStreamTo(
   [Copy] Copy stream
 
   Fails when input stream is empty.
+
+  At the happy ending it has byte from input stream that can't
+  be written. Use TVomitableStream in caller to keep that
+  unallocated byte between calls of this function.
 */
 TBool me_StreamTools::LoadStreamFrom(
   IOutputStream * OutputStream,
