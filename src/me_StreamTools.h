@@ -2,7 +2,7 @@
 
 /*
   Author: Martin Eden
-  Last mod.: 2025-09-11
+  Last mod.: 2025-10-12
 */
 
 #pragma once
@@ -99,10 +99,16 @@ namespace me_StreamTools
       TOperation SetUnit;
   };
 
-  // [Copy] Input --> Output
+  // [Copy] Input --> Output, fails when output is full
   TBool CopyStreamTo(
     IInputStream * InputStream,
     IOutputStream * OutputStream
+  );
+
+  // [Copy] Input --> Output, fails when input is empty
+  TBool LoadStreamFrom(
+    IOutputStream * OutputStream,
+    IInputStream * InputStream
   );
 
   // [Compare] A == B ?
@@ -113,7 +119,6 @@ namespace me_StreamTools
 }
 
 /*
-  2025 # # # #
-  2025-09-05
-  2025-09-11
+  2025 # # # # # #
+  2025-10-12 [+] LoadStreamFrom()
 */

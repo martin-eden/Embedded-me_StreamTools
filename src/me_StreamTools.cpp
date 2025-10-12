@@ -2,7 +2,7 @@
 
 /*
   Author: Martin Eden
-  Last mod.: 2025-08-28
+  Last mod.: 2025-10-12
 */
 
 #include <me_StreamTools.h>
@@ -58,6 +58,8 @@ TBool TWriterOutputStream::Write(
 
 /*
   [Copy] Copy stream
+
+  Fails when output stream is full.
 */
 TBool me_StreamTools::CopyStreamTo(
   IInputStream * InputStream,
@@ -74,6 +76,29 @@ TBool me_StreamTools::CopyStreamTo(
 
   return true;
 }
+
+/*
+  [Copy] Copy stream
+
+  Fails when input stream is empty.
+*/
+TBool me_StreamTools::LoadStreamFrom(
+  IOutputStream * OutputStream,
+  IInputStream * InputStream
+)
+{
+  TUnit Unit;
+
+  do
+  {
+    if (!InputStream->Read(&Unit))
+      return false;
+
+  } while (OutputStream->Write(Unit));
+
+  return true;
+}
+
 
 /*
   [Compare] Compare streams
@@ -104,7 +129,6 @@ TBool me_StreamTools::StreamsAreEqual(
 }
 
 /*
-  2025-08-24
-  2025-08-25
-  2025-08-26
+  2025 # # #
+  2025-10-12
 */
