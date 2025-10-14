@@ -82,6 +82,21 @@ namespace me_StreamTools
       TOperation SetUnit;
   };
 
+  // [Extender] Re-readable input stream
+  class TRereadableInputStream : public IInputStream
+  {
+    public:
+      void Init(IInputStream * InputStream);
+      TBool Read(TUnit * Unit) override;
+      TBool Unread();
+
+    private:
+      IInputStream * InputStream;
+      TBool HasUnitRead;
+      TBool UseUnitRead;
+      TUnit UnitRead;
+  };
+
   // [Copy] Input --> Output, fails when output is full
   TBool CopyStreamTo(
     TInputStream * InputStream,
