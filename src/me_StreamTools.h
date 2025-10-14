@@ -103,11 +103,15 @@ namespace me_StreamTools
     IOutputStream * OutputStream
   );
 
+  // ( Re-readable input stream
+
   // [Copy] Input --> Output, fails when input is empty
   TBool LoadStreamFrom(
     IOutputStream * OutputStream,
-    TInputStream * InputStream
+    TRereadableInputStream * InputStream
   );
+
+  // )
 
   // [Compare] A == B ?
   TBool StreamsAreEqual(

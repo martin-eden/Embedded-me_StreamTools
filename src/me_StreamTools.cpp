@@ -80,32 +80,6 @@ TBool me_StreamTools::SaveStreamTo(
 }
 
 /*
-  [Copy] Copy stream
-
-  Fails when input stream is empty.
-
-  Intended use is load small output stream from large input stream.
-*/
-TBool me_StreamTools::LoadStreamFrom(
-  IOutputStream * OutputStream,
-  TInputStream * InputStream
-)
-{
-  TUnit Unit;
-
-  do
-  {
-    if (!InputStream->Read(&Unit))
-      return false;
-
-  } while (OutputStream->Write(Unit));
-
-  InputStream->Unread();
-
-  return true;
-}
-
-/*
   [Compare] Compare streams
 */
 TBool me_StreamTools::StreamsAreEqual(
