@@ -59,7 +59,7 @@ namespace me_StreamTools
   };
 
   // [Adapter] Input stream = Address segment + Getter
-  class TAddrsegInputStream : public IInputStream, public TAddrsegStream
+  class TAddrsegInputStream : public TInputStream, public TAddrsegStream
   {
     public:
       TBool Init(TAddressSegment AddrSeg, TOperation UnitGetter);
