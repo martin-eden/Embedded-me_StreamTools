@@ -57,14 +57,14 @@ TBool TWriterOutputStream::Write(
 // )
 
 /*
-  [Copy] Copy stream
+  [Copy] Save stream
+
+  Copy small input stream to large output stream.
 
   Fails when output stream is full.
-
-  Intended use is copy small input stream to large output stream.
 */
-TBool me_StreamTools::CopyStreamTo(
-  TInputStream * InputStream,
+TBool me_StreamTools::SaveStreamTo(
+  IInputStream * InputStream,
   IOutputStream * OutputStream
 )
 {
@@ -73,11 +73,7 @@ TBool me_StreamTools::CopyStreamTo(
   while (InputStream->Read(&Unit))
   {
     if (!OutputStream->Write(Unit))
-    {
-      InputStream->Unread();
-
       return false;
-    }
   }
 
   return true;

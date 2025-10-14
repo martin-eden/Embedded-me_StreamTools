@@ -98,8 +98,8 @@ namespace me_StreamTools
   };
 
   // [Copy] Input --> Output, fails when output is full
-  TBool CopyStreamTo(
-    TInputStream * InputStream,
+  TBool SaveStreamTo(
+    IInputStream * InputStream,
     IOutputStream * OutputStream
   );
 
