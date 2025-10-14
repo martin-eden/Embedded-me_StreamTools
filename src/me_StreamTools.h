@@ -13,7 +13,7 @@
 namespace me_StreamTools
 {
   // [Emitter] .Read() --> 0
-  class TZeroesInputStream : public TInputStream
+  class TZeroesInputStream : public IInputStream
   {
     public:
       TBool Read(TUnit * Unit) override;
