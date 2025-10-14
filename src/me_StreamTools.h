@@ -2,7 +2,7 @@
 
 /*
   Author: Martin Eden
-  Last mod.: 2025-10-12
+  Last mod.: 2025-10-14
 */
 
 #pragma once
@@ -17,23 +17,6 @@ namespace me_StreamTools
   {
     public:
       TBool Read(TUnit * Unit) override;
-  };
-
-  // [Featurist] Input stream with Vomit()
-  class TVomitableInputStream : public IInputStream
-  {
-    public:
-      void Init(IInputStream *);
-
-      TBool Read(TUnit *) override;
-
-      TBool Vomit();
-
-    private:
-      IInputStream * InputStream;
-      TUnit UnitRead;
-      TBool HasUnitRead;
-      TBool UseUnitRead;
   };
 
   // [Adapter] Input stream == Reader
@@ -121,4 +104,5 @@ namespace me_StreamTools
 /*
   2025 # # # # # #
   2025-10-12 [+] LoadStreamFrom()
+  2025-10-14
 */
