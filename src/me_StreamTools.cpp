@@ -60,9 +60,11 @@ TBool TWriterOutputStream::Write(
   [Copy] Copy stream
 
   Fails when output stream is full.
+
+  Intended use is copy small input stream to large output stream.
 */
 TBool me_StreamTools::CopyStreamTo(
-  IInputStream * InputStream,
+  TInputStream * InputStream,
   IOutputStream * OutputStream
 )
 {
@@ -71,7 +73,11 @@ TBool me_StreamTools::CopyStreamTo(
   while (InputStream->Read(&Unit))
   {
     if (!OutputStream->Write(Unit))
+    {
+      InputStream->Unread();
+
       return false;
+    }
   }
 
   return true;
@@ -82,13 +88,11 @@ TBool me_StreamTools::CopyStreamTo(
 
   Fails when input stream is empty.
 
-  At the happy ending it has byte from input stream that can't
-  be written. Use TVomitableStream in caller to keep that
-  unallocated byte between calls of this function.
+  Intended use is load small output stream from large input stream.
 */
 TBool me_StreamTools::LoadStreamFrom(
   IOutputStream * OutputStream,
-  IInputStream * InputStream
+  TInputStream * InputStream
 )
 {
   TUnit Unit;
@@ -100,9 +104,10 @@ TBool me_StreamTools::LoadStreamFrom(
 
   } while (OutputStream->Write(Unit));
 
+  InputStream->Unread();
+
   return true;
 }
-
 
 /*
   [Compare] Compare streams

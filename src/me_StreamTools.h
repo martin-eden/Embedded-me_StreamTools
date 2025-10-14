@@ -84,14 +84,14 @@ namespace me_StreamTools
 
   // [Copy] Input --> Output, fails when output is full
   TBool CopyStreamTo(
-    IInputStream * InputStream,
+    TInputStream * InputStream,
     IOutputStream * OutputStream
   );
 
   // [Copy] Input --> Output, fails when input is empty
   TBool LoadStreamFrom(
     IOutputStream * OutputStream,
-    IInputStream * InputStream
+    TInputStream * InputStream
   );
 
   // [Compare] A == B ?
