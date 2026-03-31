@@ -28,13 +28,13 @@ TBool Op_SendByte(
   return true;
 }
 
-// TOperation for getting byte from RAM
-TBool Op_MemGetByteAt(
+// TMethod for getting byte from RAM
+void Op_MemGetByteAt(
   TAddress DataAddr,
   TAddress Address
 )
 {
-  return me_WorkMemory::GetByteFrom((TUint_1 *) DataAddr, Address);
+  me_WorkMemory::Core::GetByteFrom(DataAddr, Address);
 }
 
 /*
