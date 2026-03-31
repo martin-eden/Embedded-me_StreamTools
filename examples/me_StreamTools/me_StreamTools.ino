@@ -2,7 +2,7 @@
 
 /*
   Author: Martin Eden
-  Last mod.: 2025-08-29
+  Last mod.: 2026-03-31
 */
 
 #include <me_StreamTools.h>
@@ -53,7 +53,7 @@ void MemToStreamTest()
   Input_MemStream.Init(TestDataSeg, Op_MemGetByteAt);
   Output_UartStream.Init(Op_SendByte);
 
-  me_StreamTools::CopyStreamTo(&Input_MemStream, &Output_UartStream);
+  me_StreamTools::SaveStreamTo(&Input_MemStream, &Output_UartStream);
 
   Console.Print(")");
 }
@@ -87,7 +87,7 @@ void EchoTest_Inf()
   InputStream.Init(Op_WaitByte);
   OutputStream.Init(Op_SendByte);
 
-  me_StreamTools::CopyStreamTo(&InputStream, &OutputStream);
+  me_StreamTools::SaveStreamTo(&InputStream, &OutputStream);
 
   Console.Print(")");
 }
