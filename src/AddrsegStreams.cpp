@@ -2,7 +2,7 @@
 
 /*
   Author: Martin Eden
-  Last mod.: 2025-09-11
+  Last mod.: 2026-03-31
 */
 
 #include <me_StreamTools.h>
@@ -43,7 +43,7 @@ TAddressSegment TAddrsegStream::GetProcessedSegment()
 // ( [Adapter] Input stream == Address segment + Getter
 TBool TAddrsegInputStream::Init(
   TAddressSegment AddrSeg,
-  TOperation UnitGetter
+  TMethod UnitGetter
 )
 {
   if (!TAddrsegStream::Init(AddrSeg))
@@ -63,8 +63,7 @@ TBool TAddrsegInputStream::Read(
   if (!TAddrsegStream::Rator.GetNextAddr(&Addr))
     return false;
 
-  if (!GetUnit((TAddress) Unit, Addr))
-    return false;
+  GetUnit((TAddress) Unit, Addr);
 
   return true;
 }
@@ -73,7 +72,7 @@ TBool TAddrsegInputStream::Read(
 // ( [Adapter] Output stream == Address segment + Setter
 TBool TAddrsegOutputStream::Init(
   TAddressSegment AddrSeg,
-  TOperation UnitSetter
+  TMethod UnitSetter
 )
 {
   if (!TAddrsegStream::Init(AddrSeg))
@@ -93,8 +92,7 @@ TBool TAddrsegOutputStream::Write(
   if (!TAddrsegStream::Rator.GetNextAddr(&Addr))
     return false;
 
-  if (!SetUnit((TAddress) &Unit, Addr))
-    return false;
+  SetUnit((TAddress) &Unit, Addr);
 
   return true;
 }
@@ -103,4 +101,5 @@ TBool TAddrsegOutputStream::Write(
 /*
   2025-08-25
   2025-09-05
+  2026-03-31
 */

@@ -2,7 +2,7 @@
 
 /*
   Author: Martin Eden
-  Last mod.: 2025-10-14
+  Last mod.: 2026-03-31
 */
 
 #pragma once
@@ -58,28 +58,35 @@ namespace me_StreamTools
       TAddressSegment OrigAddrSeg;
   };
 
+  /*
+    Streams over address segment believe that their operation
+    never fails when called with address from that segment.
+
+    So Read() or Write() will fail only after end of segment.
+  */
+
   // [Adapter] Input stream = Address segment + Getter
   class TAddrsegInputStream : public IInputStream, public TAddrsegStream
   {
     public:
-      TBool Init(TAddressSegment AddrSeg, TOperation UnitGetter);
+      TBool Init(TAddressSegment AddrSeg, TMethod UnitGetter);
 
       TBool Read(TUnit * Unit) override;
 
     private:
-      TOperation GetUnit;
+      TMethod GetUnit;
   };
 
   // [Adapter] Output stream = Address segment + Setter
   class TAddrsegOutputStream : public IOutputStream, public TAddrsegStream
   {
     public:
-      TBool Init(TAddressSegment AddrSeg, TOperation UnitSetter);
+      TBool Init(TAddressSegment AddrSeg, TMethod UnitSetter);
 
       TBool Write(TUnit Unit) override;
 
     private:
-      TOperation SetUnit;
+      TMethod SetUnit;
   };
 
   // [Extender] Re-readable input stream
@@ -121,7 +128,6 @@ namespace me_StreamTools
 }
 
 /*
-  2025 # # # # # #
-  2025-10-12 [+] LoadStreamFrom()
-  2025-10-14
+  2025 # # # # # # # #
+  2026-03-31
 */
