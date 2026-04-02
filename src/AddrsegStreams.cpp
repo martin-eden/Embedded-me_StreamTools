@@ -2,7 +2,7 @@
 
 /*
   Author: Martin Eden
-  Last mod.: 2026-03-31
+  Last mod.: 2026-04-02
 */
 
 #include <me_StreamTools.h>
@@ -16,13 +16,15 @@ using namespace me_StreamTools;
 
 // ( [Internal] Base for address segment iterator stream
 TBool TAddrsegStream::Init(
-  TAddressSegment AddrSeg
+  TAddressSegment AddrSeg,
+  TMethod Operation
 )
 {
   if (!Rator.Init(AddrSeg))
     return false;
 
-  this->OrigAddrSeg = AddrSeg;
+  this->AddrSeg = AddrSeg;
+  this->Operation = Operation;
 
   return true;
 }
@@ -31,7 +33,7 @@ TAddressSegment TAddrsegStream::GetProcessedSegment()
 {
   TAddressSegment Result;
 
-  Result = OrigAddrSeg;
+  Result = AddrSeg;
 
   if (!Rator.IsDone())
     me_AddrsegTools::ChopRightAt(&Result, Rator.GetAddr());
@@ -40,20 +42,7 @@ TAddressSegment TAddrsegStream::GetProcessedSegment()
 }
 // )
 
-// ( [Adapter] Input stream == Address segment + Getter
-TBool TAddrsegInputStream::Init(
-  TAddressSegment AddrSeg,
-  TMethod UnitGetter
-)
-{
-  if (!TAddrsegStream::Init(AddrSeg))
-    return false;
-
-  this->GetUnit = UnitGetter;
-
-  return true;
-}
-
+// ( [Adapter] Input stream
 TBool TAddrsegInputStream::Read(
   TUnit * Unit
 )
@@ -63,26 +52,13 @@ TBool TAddrsegInputStream::Read(
   if (!TAddrsegStream::Rator.GetNextAddr(&Addr))
     return false;
 
-  GetUnit((TAddress) Unit, Addr);
+  TAddrsegStream::Operation((TAddress) Unit, Addr);
 
   return true;
 }
 // )
 
-// ( [Adapter] Output stream == Address segment + Setter
-TBool TAddrsegOutputStream::Init(
-  TAddressSegment AddrSeg,
-  TMethod UnitSetter
-)
-{
-  if (!TAddrsegStream::Init(AddrSeg))
-    return false;
-
-  this->SetUnit = UnitSetter;
-
-  return true;
-}
-
+// ( [Adapter] Output stream
 TBool TAddrsegOutputStream::Write(
   TUnit Unit
 )
@@ -92,7 +68,7 @@ TBool TAddrsegOutputStream::Write(
   if (!TAddrsegStream::Rator.GetNextAddr(&Addr))
     return false;
 
-  SetUnit((TAddress) &Unit, Addr);
+  TAddrsegStream::Operation((TAddress) &Unit, Addr);
 
   return true;
 }
@@ -102,4 +78,5 @@ TBool TAddrsegOutputStream::Write(
   2025-08-25
   2025-09-05
   2026-03-31
+  2026-04-02
 */

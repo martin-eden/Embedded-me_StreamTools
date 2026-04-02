@@ -43,19 +43,20 @@ namespace me_StreamTools
       TFixedOperation WriteUnit;
   };
 
-  // [Internal] Address segment iterator base class
+  // [Internal] Stream = Segment + Operation
   class TAddrsegStream
   {
     public:
-      TBool Init(TAddressSegment AddrSeg);
+      TBool Init(TAddressSegment AddrSeg, TMethod Operation);
 
       TAddressSegment GetProcessedSegment();
 
     protected:
       TAddrsegIterator Rator;
+      TMethod Operation;
 
     private:
-      TAddressSegment OrigAddrSeg;
+      TAddressSegment AddrSeg;
   };
 
   /*
@@ -65,28 +66,18 @@ namespace me_StreamTools
     So Read() or Write() will fail only after end of segment.
   */
 
-  // [Adapter] Input stream = Address segment + Getter
+  // [Adapter] Input stream
   class TAddrsegInputStream : public IInputStream, public TAddrsegStream
   {
     public:
-      TBool Init(TAddressSegment AddrSeg, TMethod UnitGetter);
-
       TBool Read(TUnit * Unit) override;
-
-    private:
-      TMethod GetUnit;
   };
 
-  // [Adapter] Output stream = Address segment + Setter
+  // [Adapter] Output stream
   class TAddrsegOutputStream : public IOutputStream, public TAddrsegStream
   {
     public:
-      TBool Init(TAddressSegment AddrSeg, TMethod UnitSetter);
-
       TBool Write(TUnit Unit) override;
-
-    private:
-      TMethod SetUnit;
   };
 
   // [Extender] Re-readable input stream
@@ -126,4 +117,5 @@ namespace me_StreamTools
 /*
   2025 # # # # # # # #
   2026-03-31
+  2026-04-02
 */
