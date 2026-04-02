@@ -2,7 +2,7 @@
 
 /*
   Author: Martin Eden
-  Last mod.: 2026-03-31
+  Last mod.: 2026-04-02
 */
 
 #pragma once
@@ -104,21 +104,17 @@ namespace me_StreamTools
       TUnit UnitRead;
   };
 
-  // [Copy] Input --> Output, fails when output is full
+  // [Copy] Input --> Output, fails when output becomes full
   TBool SaveStreamTo(
     IInputStream * InputStream,
     IOutputStream * OutputStream
   );
 
-  // ( Re-readable input stream
-
-  // [Copy] Input --> Output, fails when input is empty
+  // [Copy] Input --> Output, fails when input becomes empty
   TBool LoadStreamFrom(
     IOutputStream * OutputStream,
     TRereadableInputStream * InputStream
   );
-
-  // )
 
   // [Compare] A == B ?
   TBool StreamsAreEqual(

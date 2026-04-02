@@ -2,7 +2,7 @@
 
 /*
   Author: Martin Eden
-  Last mod.: 2025-10-14
+  Last mod.: 2026-04-02
 */
 
 /*
@@ -84,34 +84,6 @@ TBool TRereadableInputStream::Unread()
 
   return true;
 }
-
-// ( Freetown
-
-/*
-  [Copy] Load small output stream from large input stream
-
-  Fails when input stream is empty.
-*/
-TBool me_StreamTools::LoadStreamFrom(
-  IOutputStream * OutputStream,
-  TRereadableInputStream * InputStream
-)
-{
-  TUnit Unit;
-
-  do
-  {
-    if (!InputStream->Read(&Unit))
-      return false;
-
-  } while (OutputStream->Write(Unit));
-
-  InputStream->Unread();
-
-  return true;
-}
-
-// )
 
 /*
   2025-08-31

@@ -2,7 +2,7 @@
 
 /*
   Author: Martin Eden
-  Last mod.: 2025-10-12
+  Last mod.: 2026-04-02
 */
 
 #include <me_StreamTools.h>
@@ -57,11 +57,9 @@ TBool TWriterOutputStream::Write(
 // )
 
 /*
-  [Copy] Save stream
+  [Copy] Save small input stream to large output stream
 
-  Copy small input stream to large output stream.
-
-  Fails when output stream is full.
+  Fails when output stream becomes full.
 */
 TBool me_StreamTools::SaveStreamTo(
   IInputStream * InputStream,
@@ -75,6 +73,33 @@ TBool me_StreamTools::SaveStreamTo(
     if (!OutputStream->Write(Unit))
       return false;
   }
+
+  return true;
+}
+
+/*
+  [Copy] Load small output stream from large input stream
+
+  Fails when input stream becomes empty.
+
+  Note that we're using Rereadable input stream to put back
+  last unit read in case of success.
+*/
+TBool me_StreamTools::LoadStreamFrom(
+  IOutputStream * OutputStream,
+  TRereadableInputStream * InputStream
+)
+{
+  TUnit Unit;
+
+  do
+  {
+    if (!InputStream->Read(&Unit))
+      return false;
+
+  } while (OutputStream->Write(Unit));
+
+  InputStream->Unread();
 
   return true;
 }
