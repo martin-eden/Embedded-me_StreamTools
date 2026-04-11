@@ -2,7 +2,7 @@
 
 /*
   Author: Martin Eden
-  Last mod.: 2026-04-02
+  Last mod.: 2026-04-11
 */
 
 #include <me_StreamTools.h>
@@ -11,18 +11,6 @@
 #include <me_BaseInterfaces.h>
 
 using namespace me_StreamTools;
-
-/*
-  [Emitter] Zeroes emitter
-*/
-TBool TZeroesInputStream::Read(
-  TUnit * Unit
-)
-{
-  *Unit = (TUnit) 0;
-
-  return true;
-}
 
 // ( [Adapter] Input stream from reader
 void TReaderInputStream::Init(

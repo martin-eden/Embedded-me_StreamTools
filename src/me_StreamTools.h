@@ -2,7 +2,7 @@
 
 /*
   Author: Martin Eden
-  Last mod.: 2026-04-02
+  Last mod.: 2026-04-11
 */
 
 #pragma once
@@ -12,13 +12,6 @@
 
 namespace me_StreamTools
 {
-  // [Emitter] .Read() --> 0
-  class TZeroesInputStream : public IInputStream
-  {
-    public:
-      TBool Read(TUnit * Unit) override;
-  };
-
   // [Adapter] Input stream == Reader
   class TReaderInputStream : public IInputStream
   {
@@ -118,4 +111,5 @@ namespace me_StreamTools
   2025 # # # # # # # #
   2026-03-31
   2026-04-02
+  2026-04-11
 */
